@@ -1,0 +1,2 @@
+class InvalidAuthorize(Exception):
+    pass 
