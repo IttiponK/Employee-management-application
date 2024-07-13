@@ -1,13 +1,11 @@
 from pydantic import BaseModel,ConfigDict
-from typing import Optional
 
-class PositionModel(BaseModel):
+class CreatePosition(BaseModel):
     
     model_config = ConfigDict(
         validate_assignment=True,
         extra='forbid'
     )
     
-    id:Optional[int] = None
     position_name:str 
     salary:float

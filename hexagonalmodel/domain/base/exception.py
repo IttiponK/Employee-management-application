@@ -18,3 +18,6 @@ class StorageAdapterHaveSomethingWrong(Exception):
 
 class InvalidEmployeeId(Exception):
     pass 
+
+class DuplicatePosition(Exception):
+    pass 

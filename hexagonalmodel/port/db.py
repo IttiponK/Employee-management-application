@@ -80,3 +80,14 @@ class DbPort(ABC):
         Returns:
             int: id of employee
         """        
+        
+    @abstractmethod
+    def create_new_position(self,new_position:PositionModel) -> int:
+        """ create new position data to database
+
+        Args:
+            new_position (PositionModel): new position model
+
+        Returns:
+            int: id of this position
+        """        

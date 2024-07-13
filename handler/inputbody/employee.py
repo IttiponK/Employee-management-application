@@ -13,7 +13,7 @@ class CreateNewEmployee(BaseModel):
     address:str 
     position_name:str 
     status:str 
-    image:Optional[bytes]
+    image:Optional[bytes] = None
     
 class UpdateEmployee(BaseModel):
     
@@ -23,12 +23,12 @@ class UpdateEmployee(BaseModel):
     )
     
     id:int
-    first_name:Optional[str] 
-    last_name:Optional[str] 
-    address:Optional[str] 
-    position_name:Optional[str] 
-    status:Optional[str] 
-    image:Optional[bytes]
+    first_name:Optional[str] = None
+    last_name:Optional[str] = None 
+    address:Optional[str] = None 
+    position_name:Optional[str] = None 
+    status:Optional[str] = None 
+    image:Optional[bytes] = None
     
 class TerminateEmployee(BaseModel):
     model_config = ConfigDict(

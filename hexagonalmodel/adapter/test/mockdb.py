@@ -1,6 +1,7 @@
 from typing import List
 from hexagonalmodel.domain.model.account import AccountModel
 from hexagonalmodel.domain.model.employee import EmployeeModel
+from hexagonalmodel.domain.model.position import PositionModel
 from hexagonalmodel.port.db import DbPort 
 
 class MockDb(DbPort):
@@ -24,4 +25,7 @@ class MockDb(DbPort):
         pass 
     
     def update_employee(self, update_employee: EmployeeModel) -> int:
+        pass 
+    
+    def create_new_position(self, new_position: PositionModel) -> int:
         pass 
