@@ -6,8 +6,9 @@ from typing import List
 def create_new_employee(input_body:inputbody.employee.CreateNewEmployee) -> int:
     repo = Registry()
     
-    position_model = repo.db.get_position_by_position_name(position_name=input_body.position_name)
-    status_model = repo.db.get_status_by_status_name(status=input_body.status)
+    position_model = repo.db.get_position_by_position_id(id_=input_body.position_id)
+    status_model = repo.db.get_status_by_status_id(id_=input_body.status_id)
+    department_model = repo.db.get_department_by_id(id_=input_body.department_id)
     image_path = repo.storage.upload_employee_image_file(image=input_body.image)
     
     new_employee = EmployeeModel(
@@ -16,6 +17,7 @@ def create_new_employee(input_body:inputbody.employee.CreateNewEmployee) -> int:
         address=input_body.address,
         position=position_model,
         status=status_model,
+        department=department_model,
         image=image_path
     )
     
@@ -41,15 +43,20 @@ def update_employee(input_body: inputbody.employee.UpdateEmployee) -> int:
     else:
         image_path = existing_employee_model.image
     
-    if input_body.position_name:
-        position = repo.db.get_position_by_position_name(position_name=input_body.position_name)
+    if input_body.position_id:
+        position = repo.db.get_position_by_position_id(id_=input_body.position_id)
     else:
         position = existing_employee_model.position
         
-    if input_body.status:
-        status = repo.db.get_status_by_status_name(input_body.status)
+    if input_body.status_id:
+        status = repo.db.get_status_by_status_id(input_body.status_id)
     else:
         status = existing_employee_model.status
+        
+    if input_body.department_id:
+        department = repo.db.get_department_by_id(id_=input_body.department_id)
+    else:
+        department = existing_employee_model.department
         
     update_employee_model = EmployeeModel(
         id=input_body.id,
@@ -58,6 +65,7 @@ def update_employee(input_body: inputbody.employee.UpdateEmployee) -> int:
         address=input_body.address,
         position=position,
         status=status,
+        department=department,
         image=image_path
     )
     
@@ -70,7 +78,7 @@ def terminate_employee(input_body: inputbody.employee.TerminateEmployee) -> int 
     
     existing_employee_model = repo.db.get_employee_by_id(id_=input_body.id)
     
-    terminate_status = repo.db.get_status_by_status_name(status='terminate')
+    terminate_status = repo.db.get_status_by_status_id(status='terminate')
     
     existing_employee_model.status = terminate_status
     

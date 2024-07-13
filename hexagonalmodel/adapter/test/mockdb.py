@@ -1,7 +1,9 @@
 from typing import List
 from hexagonalmodel.domain.model.account import AccountModel
+from hexagonalmodel.domain.model.department import DepartmentModel
 from hexagonalmodel.domain.model.employee import EmployeeModel
 from hexagonalmodel.domain.model.position import PositionModel
+from hexagonalmodel.domain.model.status import StatusModel
 from hexagonalmodel.port.db import DbPort 
 
 class MockDb(DbPort):
@@ -9,10 +11,10 @@ class MockDb(DbPort):
     def get_account_detail_by_username(self, username: str) -> AccountModel:
         pass 
     
-    def get_position_by_position_name(self, position_name: str) -> None:
+    def get_position_by_position_id(self, id_: int) -> PositionModel:
         pass 
     
-    def get_status_by_status_name(self, status: str) -> None:
+    def get_status_by_status_id(self, id_: int) -> StatusModel:
         pass 
     
     def create_new_employee(self, new_employee: EmployeeModel) -> int:
@@ -37,4 +39,7 @@ class MockDb(DbPort):
         pass 
     
     def delete_position_by_id(self, id_: int) -> None:
+        pass 
+    
+    def get_department_by_id(self, id_: int) -> DepartmentModel:
         pass 

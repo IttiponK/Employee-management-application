@@ -11,8 +11,9 @@ class CreateNewEmployee(BaseModel):
     first_name:str 
     last_name:str 
     address:str 
-    position_name:str 
-    status:str 
+    position_id:int  
+    status_id:int  
+    department_id:int 
     image:Optional[bytes] = None
     
 class UpdateEmployee(BaseModel):
@@ -26,8 +27,9 @@ class UpdateEmployee(BaseModel):
     first_name:Optional[str] = None
     last_name:Optional[str] = None 
     address:Optional[str] = None 
-    position_name:Optional[str] = None 
-    status:Optional[str] = None 
+    position_id:Optional[int] = None 
+    status_id:Optional[int] = None 
+    department_id:Optional[int]
     image:Optional[bytes] = None
     
 class TerminateEmployee(BaseModel):

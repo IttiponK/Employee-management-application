@@ -17,6 +17,10 @@ mock_status_model = model.status.StatusModel(
     status_name='test'
 )
 
+mock_department_model = model.department.DepartmentModel(
+    department_name='information technology'
+)
+
 def test_should_raise_InvalidPositoin_when_position_name_in_input_body_is_invalid(mocker:MockerFixture):
     Registry().db = MockDb()
     
@@ -24,15 +28,16 @@ def test_should_raise_InvalidPositoin_when_position_name_in_input_body_is_invali
         "first_name":"test",
         "last_name":"test",
         "address":"test address",
-        "position_name":"invalid",
-        "status":"test",
+        "position_id":1,
+        "status_id":1,
+        "department_id":1,
         "image":b"someimage"
     }
     
-    mock_call_func = mocker.patch.object(Registry().db,'get_position_by_position_name',side_effect=exception.InvalidPosition)
+    mock_call_func = mocker.patch.object(Registry().db,'get_position_by_position_id',side_effect=exception.InvalidPositionId)
     
     mock_input_body = inputbody.employee.CreateNewEmployee.model_validate(mock_request_data)
-    with raises(exception.InvalidPosition):
+    with raises(exception.InvalidPositionId):
         
         id_ = usecase.employee.create_new_employee(mock_input_body)
         
@@ -47,12 +52,13 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_cat_not_check_position_ex
         "first_name":"test",
         "last_name":"test",
         "address":"test address",
-        "position_name":"test",
-        "status":"test",
+        "position_id":1,
+        "status_id":1,
+        "department_id":1,
         "image":b"someimage"
     }
     
-    mock_call_func = mocker.patch.object(Registry().db,'get_position_by_position_name',side_effect=exception.DbAdapterHaveSomethingWrong)
+    mock_call_func = mocker.patch.object(Registry().db,'get_position_by_position_id',side_effect=exception.DbAdapterHaveSomethingWrong)
     
     mock_input_body = inputbody.employee.CreateNewEmployee.model_validate(mock_request_data)
     with raises(exception.DbAdapterHaveSomethingWrong):
@@ -70,12 +76,13 @@ def test_should_raise_InvalidStatus_when_status_in_input_body_is_invalid(mocker:
         "first_name":"test",
         "last_name":"test",
         "address":"test address",
-        "position_name":"test",
-        "status":"invalid",
+        "position_id":1,
+        "status_id":1,
+        "department_id":1,
         "image":b"someimage"
     }
-    mock_call_func1 = mocker.patch.object(Registry().db,'get_position_by_position_name',return_value=mock_position_model)
-    mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_name',side_effect=exception.InvalidStatus)
+    mock_call_func1 = mocker.patch.object(Registry().db,'get_position_by_position_id',return_value=mock_position_model)
+    mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_id',side_effect=exception.InvalidStatus)
     
     mock_input_body = inputbody.employee.CreateNewEmployee.model_validate(mock_request_data)
     with raises(exception.InvalidStatus):
@@ -94,12 +101,13 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_check_status_exis
         "first_name":"test",
         "last_name":"test",
         "address":"test address",
-        "position_name":"test",
-        "status":"test",
+        "position_id":1,
+        "status_id":1,
+        "department_id":1,
         "image":b"someimage"
     }
-    mock_call_func1 = mocker.patch.object(Registry().db,'get_position_by_position_name',return_value=mock_position_model)
-    mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_name',side_effect=exception.DbAdapterHaveSomethingWrong)
+    mock_call_func1 = mocker.patch.object(Registry().db,'get_position_by_position_id',return_value=mock_position_model)
+    mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_id',side_effect=exception.DbAdapterHaveSomethingWrong)
     
     mock_input_body = inputbody.employee.CreateNewEmployee.model_validate(mock_request_data)
     with raises(exception.DbAdapterHaveSomethingWrong):
@@ -119,14 +127,16 @@ def test_should_raise_StorageAdapterHaveSomethingWrong_when_cannot_upload_image_
         "first_name":"test",
         "last_name":"test",
         "address":"test address",
-        "position_name":"test",
-        "status":"test",
+        "position_id":1,
+        "status_id":1,
+        "department_id":1,
         "image":b"someimage"
     }
     
-    mock_call_func1 = mocker.patch.object(Registry().db,'get_position_by_position_name',return_value=mock_position_model)
-    mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_name',return_value=mock_status_model)
-    mock_call_func3 = mocker.patch.object(Registry().storage,'upload_employee_image_file',side_effect=exception.StorageAdapterHaveSomethingWrong)
+    mock_call_func1 = mocker.patch.object(Registry().db,'get_position_by_position_id',return_value=mock_position_model)
+    mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_id',return_value=mock_status_model)
+    mock_call_func3 = mocker.patch.object(Registry().db,'get_department_by_id',return_value=mock_department_model)
+    mock_call_func4 = mocker.patch.object(Registry().storage,'upload_employee_image_file',side_effect=exception.StorageAdapterHaveSomethingWrong)
     
     mock_input_body = inputbody.employee.CreateNewEmployee.model_validate(mock_request_data)
     with raises(exception.StorageAdapterHaveSomethingWrong):
@@ -136,25 +146,29 @@ def test_should_raise_StorageAdapterHaveSomethingWrong_when_cannot_upload_image_
     mock_call_func1.assert_called_once()
     mock_call_func2.assert_called_once()
     mock_call_func3.assert_called_once()
+    mock_call_func4.assert_called_once()
     
     mocker.resetall()
 
 def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_create_new_employee_to_db(mocker: MockerFixture):
     Registry().db = MockDb()
+    Registry().storage = MockStorage()
     
     mock_request_data = {
         "first_name":"test",
         "last_name":"test",
         "address":"test address",
-        "position_name":"test",
-        "status":"test",
+        "position_id":1,
+        "status_id":1,
+        "department_id":1,
         "image":b"someimage"
     }
     
-    mock_call_func1 = mocker.patch.object(Registry().db,'get_position_by_position_name',return_value=mock_position_model)
-    mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_name',return_value=mock_status_model)
+    mock_call_func1 = mocker.patch.object(Registry().db,'get_position_by_position_id',return_value=mock_position_model)
+    mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_id',return_value=mock_status_model)
     mock_call_func3 = mocker.patch.object(Registry().storage,'upload_employee_image_file',return_value='test')
-    mock_call_func4 = mocker.patch.object(Registry().db,'create_new_employee',side_effect=exception.DbAdapterHaveSomethingWrong)
+    mock_call_func4 = mocker.patch.object(Registry().db,'get_department_by_id',return_value=mock_department_model)
+    mock_call_func5 = mocker.patch.object(Registry().db,'create_new_employee',side_effect=exception.DbAdapterHaveSomethingWrong)
     
     mock_input_body = inputbody.employee.CreateNewEmployee.model_validate(mock_request_data)
     with raises(exception.DbAdapterHaveSomethingWrong):
@@ -165,25 +179,29 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_create_new_employ
     mock_call_func2.assert_called_once()
     mock_call_func3.assert_called_once()  
     mock_call_func4.assert_called_once()
+    mock_call_func5.assert_called_once()
     
     mocker.resetall()
     
 def test_should_raise_any_Exception_when_everything_is_valid(mocker: MockerFixture):
     Registry().db = MockDb()
+    Registry().storage = MockStorage()
     
     mock_request_data = {
         "first_name":"test",
         "last_name":"test",
         "address":"test address",
-        "position_name":"test",
-        "status":"test",
+        "position_id":1,
+        "status_id":1,
+        "department_id":1,
         "image":b"someimage"
     }
     
-    mock_call_func1 = mocker.patch.object(Registry().db,'get_position_by_position_name',return_value=mock_position_model)
-    mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_name',return_value=mock_status_model)
-    mock_call_func3 = mocker.patch.object(Registry().storage,'upload_employee_image_file',return_value='test')
-    mock_call_func4 = mocker.patch.object(Registry().db,'create_new_employee',return_value=1)
+    mock_call_func1 = mocker.patch.object(Registry().db,'get_position_by_position_id',return_value=mock_position_model)
+    mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_id',return_value=mock_status_model)
+    mock_call_func3 = mocker.patch.object(Registry().db,'get_department_by_id',return_value=mock_department_model)
+    mock_call_func4 = mocker.patch.object(Registry().storage,'upload_employee_image_file',return_value='test')
+    mock_call_func5 = mocker.patch.object(Registry().db,'create_new_employee',return_value=1)
     
     mock_input_body = inputbody.employee.CreateNewEmployee.model_validate(mock_request_data)
         
@@ -193,6 +211,7 @@ def test_should_raise_any_Exception_when_everything_is_valid(mocker: MockerFixtu
     mock_call_func2.assert_called_once()
     mock_call_func3.assert_called_once()  
     mock_call_func4.assert_called_once()
+    mock_call_func5.assert_called_once()
     
     assert isinstance(id_,int)
     

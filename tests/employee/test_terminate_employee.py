@@ -15,16 +15,22 @@ mock_position = model.position.PositionModel(
     position_name='test',
     salary=80000
 )
+mock_department = model.department.DepartmentModel(
+    department_name='information technology'
+)
 mock_employee = model.employee.EmployeeModel(
     first_name='test',
     last_name='test',
     address='test',
     position=mock_position,
     status=mock_status,
+    department=mock_department,
     image='test'
 )
 
 def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_update_employee_data_to_database(mocker: MockerFixture):
+    Registry().db = MockDb()
+    
     mock_request_data = {
         'id':1
     }
@@ -33,7 +39,7 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_update_employee_d
     mock_call_func1 = mocker.patch.object(Registry().db,'get_employee_by_id',return_value=mock_employee)
     
     mock_status.status_name = 'terminate'
-    mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_name',return_value=mock_status)
+    mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_id',return_value=mock_status)
     mock_call_func3 = mocker.patch.object(Registry().db,'update_employee',side_effect=exception.DbAdapterHaveSomethingWrong)
     
     mock_input = inputbody.employee.TerminateEmployee.model_validate(mock_request_data) 

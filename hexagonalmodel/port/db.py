@@ -3,6 +3,7 @@ from hexagonalmodel.domain.model.account import AccountModel
 from hexagonalmodel.domain.model.status import StatusModel
 from hexagonalmodel.domain.model.position import PositionModel
 from hexagonalmodel.domain.model.employee import EmployeeModel
+from hexagonalmodel.domain.model.department import DepartmentModel
 from typing import List
 
 class DbPort(ABC):
@@ -19,22 +20,22 @@ class DbPort(ABC):
         """   
         
     @abstractmethod
-    def get_position_by_position_name(self,position_name: str) -> PositionModel:
-        """ get position model in database if not exist should raise InvalidPosition
+    def get_position_by_position_id(self,id_: int) -> PositionModel:
+        """ get position model in database if not exist should raise InvalidPositionId
 
         Args:
-            position_name (str): position name
+            id_ (int): id of position
 
         Returns:
             PositionModel: position data in database
         """               
         
     @abstractmethod
-    def get_status_by_status_name(self,status: str) -> StatusModel:
-        """ get status model in database if not exist should raise InvalidStatus
+    def get_status_by_status_id(self,id_: int) -> StatusModel:
+        """ get status model in database if not exist should raise InvalidStatusId
 
         Args:
-            status (str): status
+            id_ (int): id of status
 
         Returns:
             StatusModel: status data in database
@@ -119,4 +120,13 @@ class DbPort(ABC):
             id_ (int): id of position
         """        
         
-            
+    @abstractmethod
+    def get_department_by_id(self,id_: int) -> DepartmentModel:
+        """ get department data in database
+
+        Args:
+            id_ (int): id of department
+
+        Returns:
+            DepartmentModel: department model
+        """        

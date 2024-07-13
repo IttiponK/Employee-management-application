@@ -15,12 +15,16 @@ mock_position = model.position.PositionModel(
     position_name='test',
     salary=80000
 )
+mock_department = model.department.DepartmentModel(
+    department_name='information technology'
+)
 mock_employee = model.employee.EmployeeModel(
     first_name='test',
     last_name='test',
     address='test',
     position=mock_position,
     status=mock_status,
+    department=mock_department,
     image='test'
 )
 mock_account = model.account.AccountModel(

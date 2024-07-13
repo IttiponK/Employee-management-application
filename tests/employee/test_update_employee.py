@@ -15,12 +15,16 @@ mock_position = model.position.PositionModel(
     position_name='test',
     salary=80000
 )
+mock_department = model.department.DepartmentModel(
+    department_name='information technology'
+)
 mock_employee = model.employee.EmployeeModel(
     first_name='test',
     last_name='test',
     address='test',
     position=mock_position,
     status=mock_status,
+    department=mock_department,
     image='test'
 )
 
@@ -33,8 +37,9 @@ def test_should_raise_InvalidEmployeeId_when_employee_id_in_input_body_is_invali
         "first_name":"test",
         "last_name":"test",
         "address":"test address",
-        "position_name":"invalid",
-        "status":"test",
+        "position_id":1,
+        "status_id":1,
+        "department_id":1,
         "image":None
     }
     
@@ -59,8 +64,9 @@ def test_should_raise_StorageAdapterHaveSomethingWrong_when_can_not_update_emplo
         "first_name":"test",
         "last_name":"test",
         "address":"test address",
-        "position_name":"invalid",
-        "status":"test",
+        "position_id":1,
+        "status_id":1,
+        "department_id":1,
         "image":b"new image"
     }
     
@@ -85,8 +91,9 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_update_employee_d
         "first_name":"test",
         "last_name":"test",
         "address":"test address",
-        "position_name":None,
-        "status":None,
+        "position_id":None,
+        "status_id":None,
+        "department_id":None,
         "image":None
     }
     

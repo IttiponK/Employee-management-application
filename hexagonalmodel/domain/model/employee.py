@@ -1,6 +1,7 @@
 from pydantic import BaseModel,ConfigDict
 from hexagonalmodel.domain.model.status import StatusModel
 from hexagonalmodel.domain.model.position import PositionModel
+from hexagonalmodel.domain.model.department import DepartmentModel
 from typing import Optional
 
 class EmployeeModel(BaseModel):
@@ -16,6 +17,7 @@ class EmployeeModel(BaseModel):
     address:str 
     position:PositionModel
     status:StatusModel 
+    department:DepartmentModel
     image:str
     
     

@@ -7,9 +7,6 @@ class DbAdapterHaveSomethingWrong(Exception):
 class EncryptionAdapterHaveSomethingWrong(Exception):
     pass 
 
-class InvalidPosition(Exception):
-    pass 
-
 class InvalidStatus(Exception):
     pass 
 
