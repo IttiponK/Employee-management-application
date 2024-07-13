@@ -27,3 +27,9 @@ def update_status(input_body: inputbody.status.UpdateStatus) -> int:
     id_ = repo.db.update_status(update_status_model)
     
     return id_
+
+def delete_status(input_body: inputbody.status.DeleteStatus) -> None:
+    repo = Registry()
+    
+    repo.db.delete_status_by_id(input_body.id)
+    

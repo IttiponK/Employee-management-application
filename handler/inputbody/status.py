@@ -18,3 +18,11 @@ class UpdateStatus(BaseModel):
     
     id:int 
     status_name:str 
+    
+class DeleteStatus(BaseModel):
+    model_config = ConfigDict(
+        validate_assignment=True,
+        extra='forbid'
+    )
+    
+    id:int 
