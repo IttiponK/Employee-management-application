@@ -179,3 +179,11 @@ class DbPort(ABC):
         Returns:
             int: id of this status
         """                
+        
+    @abstractmethod
+    def get_all_status(self) -> List[StatusModel]:
+        """ get all status in database
+
+        Returns:
+            List[StatusModel]: list of status model
+        """        

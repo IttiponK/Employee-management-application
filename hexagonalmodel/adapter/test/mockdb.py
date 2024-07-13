@@ -58,3 +58,6 @@ class MockDb(DbPort):
     
     def create_new_status(self, new_status: StatusModel) -> int:
         pass 
+    
+    def get_all_status(self) -> List[StatusModel]:
+        pass 
