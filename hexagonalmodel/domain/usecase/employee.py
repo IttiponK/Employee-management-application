@@ -1,6 +1,7 @@
 from hexagonalmodel.domain.base.registry import Registry
 from handler import inputbody
 from hexagonalmodel.domain.model.employee import EmployeeModel
+from typing import List
 
 def create_new_employee(input_body:inputbody.employee.CreateNewEmployee) -> int:
     repo = Registry()
@@ -22,4 +23,9 @@ def create_new_employee(input_body:inputbody.employee.CreateNewEmployee) -> int:
     
     return id_
     
+def get_all_employee() -> List[EmployeeModel]:
+    repo = Registry()
     
+    all_employee = repo.db.get_all_employee()
+    
+    return all_employee

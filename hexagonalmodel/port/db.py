@@ -3,6 +3,7 @@ from hexagonalmodel.domain.model.account import AccountModel
 from hexagonalmodel.domain.model.status import StatusModel
 from hexagonalmodel.domain.model.position import PositionModel
 from hexagonalmodel.domain.model.employee import EmployeeModel
+from typing import List
 
 class DbPort(ABC):
     
@@ -48,4 +49,12 @@ class DbPort(ABC):
 
         Returns:
             int: id of this employee
+        """        
+        
+    @abstractmethod
+    def get_all_employee(self) -> List[EmployeeModel]:
+        """ get all employee data in database
+
+        Returns:
+            List[EmployeeModel]: list of employee model
         """        

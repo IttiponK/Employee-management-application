@@ -1,3 +1,4 @@
+from typing import List
 from hexagonalmodel.domain.model.account import AccountModel
 from hexagonalmodel.domain.model.employee import EmployeeModel
 from hexagonalmodel.port.db import DbPort 
@@ -14,4 +15,7 @@ class MockDb(DbPort):
         pass 
     
     def create_new_employee(self, new_employee: EmployeeModel) -> int:
+        pass 
+    
+    def get_all_employee(self) -> List[EmployeeModel]:
         pass 
