@@ -19,3 +19,9 @@ class MockDb(DbPort):
     
     def get_all_employee(self) -> List[EmployeeModel]:
         pass 
+    
+    def get_employee_by_id(self, id_: int) -> EmployeeModel:
+        pass 
+    
+    def update_employee(self, update_employee: EmployeeModel) -> int:
+        pass 

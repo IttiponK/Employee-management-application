@@ -1,6 +1,7 @@
 from pydantic import BaseModel,ConfigDict
 from hexagonalmodel.domain.model.status import StatusModel
 from hexagonalmodel.domain.model.position import PositionModel
+from typing import Optional
 
 class EmployeeModel(BaseModel):
     
@@ -9,6 +10,7 @@ class EmployeeModel(BaseModel):
         extra='forbid'
     )
     
+    id:Optional[int] = None
     first_name:str 
     last_name:str 
     address:str 

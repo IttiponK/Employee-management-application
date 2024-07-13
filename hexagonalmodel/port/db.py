@@ -58,3 +58,25 @@ class DbPort(ABC):
         Returns:
             List[EmployeeModel]: list of employee model
         """        
+        
+    @abstractmethod
+    def get_employee_by_id(self,id_: int) -> EmployeeModel:
+        """ get employee data from database
+
+        Args:
+            id_ (int): id of employee
+
+        Returns:
+            EmployeeModel: employee model
+        """        
+        
+    @abstractmethod
+    def update_employee(self,update_employee:EmployeeModel) -> int:
+        """ update employee data from update employee model to database
+
+        Args:
+            update_employee (EmployeeModel): update employee model 
+
+        Returns:
+            int: id of employee
+        """        

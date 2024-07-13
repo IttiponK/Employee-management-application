@@ -2,11 +2,9 @@ from pytest_mock import MockerFixture
 from pytest import raises
 from hexagonalmodel.domain.base import exception
 from hexagonalmodel.domain import usecase
-from handler import inputbody
 from hexagonalmodel.domain.base.registry import Registry
 from hexagonalmodel.domain import model
 from hexagonalmodel.adapter.test.mockdb import MockDb 
-from hexagonalmodel.adapter.test.mockstorage import MockStorage
 
 mock_status = model.status.StatusModel(
     status_name='test'
@@ -35,6 +33,8 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_get_all_employee_
         
     mock_call_func.assert_called_once()
     
+    mocker.resetall()
+    
 def test_should_not_raise_any_Exception_when_everything_is_valid(mocker: MockerFixture):
     Registry().db = MockDb()
     
@@ -45,4 +45,6 @@ def test_should_not_raise_any_Exception_when_everything_is_valid(mocker: MockerF
     mock_call_func.assert_called_once()
     
     assert isinstance(all_employee,list)
+    
+    mocker.resetall()
     

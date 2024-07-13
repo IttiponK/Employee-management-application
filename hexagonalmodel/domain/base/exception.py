@@ -15,3 +15,6 @@ class InvalidStatus(Exception):
 
 class StorageAdapterHaveSomethingWrong(Exception):
     pass 
+
+class InvalidEmployeeId(Exception):
+    pass 

@@ -47,6 +47,8 @@ def test_should_raise_InvalidAuthorize_when_username_or_password_is_invalid(mock
     with raises(exception.InvalidAuthorize):
         
         usecase.account.login(mock_input)
+    
+    mocker.resetall()
 
 def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_get_account_from_database(mocker:MockerFixture):
     Registry().db = MockDb()
@@ -65,6 +67,8 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_get_account_from_
         
         usecase.account.login(mock_input)
         
+    mocker.resetall()
+        
 def test_should_raise_EncryptionAdapterHaveSomethingWrong_when_can_not_verify_plaintext(mocker: MockerFixture):
     Registry().db = MockDb()
     Registry().encryption = MockEncrypt()
@@ -82,6 +86,8 @@ def test_should_raise_EncryptionAdapterHaveSomethingWrong_when_can_not_verify_pl
     with raises(exception.EncryptionAdapterHaveSomethingWrong):
         
         usecase.account.login(mock_input)
+        
+    mocker.resetall()
         
 def test_should_raise_InvalidAuthorize_when_this_account_is_deactivate(mocker: MockerFixture):
     Registry().db = MockDb()
@@ -103,6 +109,7 @@ def test_should_raise_InvalidAuthorize_when_this_account_is_deactivate(mocker: M
         
     # set to default value 
     mock_account.deactivate = False
+    mocker.resetall()
         
 def test_should_not_raise_any_Exception_when_everything_is_valid(mocker: MockerFixture):
     Registry().db = MockDb()
@@ -126,4 +133,6 @@ def test_should_not_raise_any_Exception_when_everything_is_valid(mocker: MockerF
     mock_call_func1.assert_called_once()
     
     mock_call_func2.assert_called_once()
+    
+    mocker.resetall()
     

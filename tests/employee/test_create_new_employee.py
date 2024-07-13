@@ -37,6 +37,8 @@ def test_should_raise_InvalidPositoin_when_position_name_in_input_body_is_invali
         id_ = usecase.employee.create_new_employee(mock_input_body)
         
     mock_call_func.assert_called_once()
+    
+    mocker.resetall()
         
 def test_should_raise_DbAdapterHaveSomethingWrong_when_cat_not_check_position_exist_in_db(mocker: MockerFixture):
     Registry().db = MockDb()
@@ -59,6 +61,8 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_cat_not_check_position_ex
         
     mock_call_func.assert_called_once()
     
+    mocker.resetall()
+    
 def test_should_raise_InvalidStatus_when_status_in_input_body_is_invalid(mocker: MockerFixture):
     Registry().db = MockDb()
     
@@ -80,6 +84,8 @@ def test_should_raise_InvalidStatus_when_status_in_input_body_is_invalid(mocker:
     
     mock_call_func1.assert_called_once()  
     mock_call_func2.assert_called_once()
+    
+    mocker.resetall()
         
 def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_check_status_exist_in_db(mocker: MockerFixture):
     Registry().db = MockDb()
@@ -102,6 +108,8 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_check_status_exis
     
     mock_call_func1.assert_called_once()   
     mock_call_func2.assert_called_once()
+    
+    mocker.resetall()
 
 def test_should_raise_StorageAdapterHaveSomethingWrong_when_cannot_upload_image_to_storage(mocker: MockerFixture):
     Registry().db = MockDb()
@@ -128,6 +136,8 @@ def test_should_raise_StorageAdapterHaveSomethingWrong_when_cannot_upload_image_
     mock_call_func1.assert_called_once()
     mock_call_func2.assert_called_once()
     mock_call_func3.assert_called_once()
+    
+    mocker.resetall()
 
 def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_create_new_employee_to_db(mocker: MockerFixture):
     Registry().db = MockDb()
@@ -156,6 +166,7 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_create_new_employ
     mock_call_func3.assert_called_once()  
     mock_call_func4.assert_called_once()
     
+    mocker.resetall()
     
 def test_should_raise_any_Exception_when_everything_is_valid(mocker: MockerFixture):
     Registry().db = MockDb()
@@ -184,3 +195,5 @@ def test_should_raise_any_Exception_when_everything_is_valid(mocker: MockerFixtu
     mock_call_func4.assert_called_once()
     
     assert isinstance(id_,int)
+    
+    mocker.resetall()

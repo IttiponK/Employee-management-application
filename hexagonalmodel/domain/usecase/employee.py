@@ -29,3 +29,39 @@ def get_all_employee() -> List[EmployeeModel]:
     all_employee = repo.db.get_all_employee()
     
     return all_employee
+
+def update_employee(input_body: inputbody.employee.UpdateEmployee) -> int:
+    repo = Registry()
+    
+        
+    existing_employee_model = repo.db.get_employee_by_id(id_=input_body.id)
+    
+    if input_body.image:
+        image_path = repo.storage.upload_employee_image_file(image=input_body.image)
+    else:
+        image_path = existing_employee_model.image
+    
+    if input_body.position_name:
+        position = repo.db.get_position_by_position_name(position_name=input_body.position_name)
+    else:
+        position = existing_employee_model.position
+        
+    if input_body.status:
+        status = repo.db.get_status_by_status_name(input_body.status)
+    else:
+        status = existing_employee_model.status
+        
+    update_employee_model = EmployeeModel(
+        id=input_body.id,
+        first_name=input_body.first_name,
+        last_name=input_body.last_name,
+        address=input_body.address,
+        position=position,
+        status=status,
+        image=image_path
+    )
+    
+    id_ = repo.db.update_employee(update_employee_model)
+    
+    return id_
+
