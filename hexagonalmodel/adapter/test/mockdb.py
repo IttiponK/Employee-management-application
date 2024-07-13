@@ -43,3 +43,6 @@ class MockDb(DbPort):
     
     def get_department_by_id(self, id_: int) -> DepartmentModel:
         pass 
+    
+    def create_new_department(self, new_department: DepartmentModel) -> int:
+        pass 

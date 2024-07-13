@@ -130,3 +130,14 @@ class DbPort(ABC):
         Returns:
             DepartmentModel: department model
         """        
+        
+    @abstractmethod
+    def create_new_department(self,new_department:DepartmentModel) -> int:
+        """ create new department to database
+
+        Args:
+            new_department (DepartmentModel): department model
+
+        Returns:
+            int: id of department
+        """        
