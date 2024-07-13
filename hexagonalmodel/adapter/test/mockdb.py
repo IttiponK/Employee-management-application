@@ -32,3 +32,6 @@ class MockDb(DbPort):
     
     def get_all_position(self) -> List[PositionModel]:
         pass 
+    
+    def update_position(self, update_position: PositionModel) -> int:
+        pass 

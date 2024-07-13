@@ -99,3 +99,16 @@ class DbPort(ABC):
         Returns:
             List[PositionModel]: list of position model
         """        
+        
+    @abstractmethod
+    def update_position(self,update_position:PositionModel) -> int:
+        """ update position data to database
+
+        Args:
+            update_position (PositionModel): position model
+
+        Returns:
+            int: id of this position
+        """
+        
+            

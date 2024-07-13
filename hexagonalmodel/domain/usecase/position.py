@@ -18,3 +18,13 @@ def get_all_position() -> List[PositionModel]:
     all_position = repo.db.get_all_position()
     
     return all_position
+
+def update_position(input_body: inputbody.position.UpdataPosition) -> int:
+    repo = Registry()
+    
+    update_position = PositionModel.model_validate(input_body.model_dump())
+    
+    id_ = repo.db.update_position(update_position)
+    
+    return id_
+

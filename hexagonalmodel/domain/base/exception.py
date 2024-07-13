@@ -7,7 +7,7 @@ class DbAdapterHaveSomethingWrong(Exception):
 class EncryptionAdapterHaveSomethingWrong(Exception):
     pass 
 
-class InvalidPositoin(Exception):
+class InvalidPosition(Exception):
     pass 
 
 class InvalidStatus(Exception):
@@ -20,4 +20,7 @@ class InvalidEmployeeId(Exception):
     pass 
 
 class DuplicatePosition(Exception):
+    pass 
+
+class InvalidPositionId(Exception):
     pass 

@@ -29,10 +29,10 @@ def test_should_raise_InvalidPositoin_when_position_name_in_input_body_is_invali
         "image":b"someimage"
     }
     
-    mock_call_func = mocker.patch.object(Registry().db,'get_position_by_position_name',side_effect=exception.InvalidPositoin)
+    mock_call_func = mocker.patch.object(Registry().db,'get_position_by_position_name',side_effect=exception.InvalidPosition)
     
     mock_input_body = inputbody.employee.CreateNewEmployee.model_validate(mock_request_data)
-    with raises(exception.InvalidPositoin):
+    with raises(exception.InvalidPosition):
         
         id_ = usecase.employee.create_new_employee(mock_input_body)
         
