@@ -6,3 +6,12 @@ class DbAdapterHaveSomethingWrong(Exception):
 
 class EncryptionAdapterHaveSomethingWrong(Exception):
     pass 
+
+class InvalidPositoin(Exception):
+    pass 
+
+class InvalidStatus(Exception):
+    pass 
+
+class StorageAdapterHaveSomethingWrong(Exception):
+    pass 

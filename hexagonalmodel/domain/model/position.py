@@ -1,10 +1,11 @@
 from pydantic import BaseModel,ConfigDict
 
-class StatusModel(BaseModel):
+class PositionModel(BaseModel):
     
     model_config = ConfigDict(
         validate_assignment=True,
         extra='forbid'
     )
     
-    status_name:str
+    position_name:str 
+    salary:float

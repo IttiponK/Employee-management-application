@@ -1,5 +1,8 @@
 from abc import ABC,abstractmethod
 from hexagonalmodel.domain.model.account import AccountModel
+from hexagonalmodel.domain.model.status import StatusModel
+from hexagonalmodel.domain.model.position import PositionModel
+from hexagonalmodel.domain.model.employee import EmployeeModel
 
 class DbPort(ABC):
     
@@ -13,3 +16,36 @@ class DbPort(ABC):
         Returns:
             AccountModel: model for describe this account
         """   
+        
+    @abstractmethod
+    def get_position_by_position_name(self,position_name: str) -> PositionModel:
+        """ get position model in database if not exist should raise InvalidPosition
+
+        Args:
+            position_name (str): position name
+
+        Returns:
+            PositionModel: position data in database
+        """               
+        
+    @abstractmethod
+    def get_status_by_status_name(self,status: str) -> StatusModel:
+        """ get status model in database if not exist should raise InvalidStatus
+
+        Args:
+            status (str): status
+
+        Returns:
+            StatusModel: status data in database
+        """        
+        
+    @abstractmethod
+    def create_new_employee(self,new_employee: EmployeeModel) -> int:
+        """ create new employee data to database 
+
+        Args:
+            new_employee (EmployeeModel): employee model data
+
+        Returns:
+            int: id of this employee
+        """        

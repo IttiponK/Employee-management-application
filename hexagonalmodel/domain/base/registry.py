@@ -11,3 +11,5 @@ class Registry(metaclass=Singleton):
         from hexagonalmodel.port.db import DbPort
         self.db:Optional[DbPort] = None
         
+        from hexagonalmodel.port.storage import StoragePort
+        self.storage:Optional[StoragePort] = None
