@@ -160,3 +160,11 @@ class DbPort(ABC):
         Returns:
             int: id of this department
         """        
+        
+    @abstractmethod
+    def delete_department_by_id(self,id_: int) -> None:
+        """ delete department data in database
+
+        Args:
+            id_ (int): id of department
+        """                     

@@ -35,3 +35,8 @@ def update_department(input_body: inputbody.department.UpdateDepartment) -> int:
     
     return id_
 
+def delete_department(input_body: inputbody.department.DeleteDepartment) -> None:
+    repo = Registry() 
+    
+    repo.db.delete_department_by_id(input_body.id)
+    

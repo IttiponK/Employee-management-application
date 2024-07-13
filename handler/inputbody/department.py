@@ -21,3 +21,12 @@ class UpdateDepartment(BaseModel):
     id:int
     department_name:str 
     manager_id:Optional[int] = None
+    
+class DeleteDepartment(BaseModel):
+    
+    model_config = ConfigDict(
+        validate_assignment=True,
+        extra='forbid'
+    )
+    
+    id:int
