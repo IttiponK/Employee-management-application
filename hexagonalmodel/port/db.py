@@ -167,4 +167,15 @@ class DbPort(ABC):
 
         Args:
             id_ (int): id of department
-        """                     
+        """             
+        
+    @abstractmethod
+    def create_new_status(self,new_status:StatusModel) -> int:
+        """ create new status data to database
+
+        Args:
+            new_status (StatusModel): status model
+
+        Returns:
+            int: id of this status
+        """                

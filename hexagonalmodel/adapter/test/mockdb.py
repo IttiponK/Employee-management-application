@@ -55,3 +55,6 @@ class MockDb(DbPort):
     
     def delete_department_by_id(self, id_: int) -> None:
         pass 
+    
+    def create_new_status(self, new_status: StatusModel) -> int:
+        pass 

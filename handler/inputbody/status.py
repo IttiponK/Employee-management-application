@@ -1,12 +1,10 @@
 from pydantic import BaseModel,ConfigDict
-from typing import Optional
 
-class StatusModel(BaseModel):
+class CreateNewStatus(BaseModel):
     
     model_config = ConfigDict(
         validate_assignment=True,
         extra='forbid'
     )
     
-    id:Optional[int] = None
-    status_name:str
+    status_name:str 

@@ -3,9 +3,7 @@ from pytest import raises
 from hexagonalmodel.domain.base import exception
 from hexagonalmodel.domain import usecase
 from hexagonalmodel.domain.base.registry import Registry
-from hexagonalmodel.domain import model
 from hexagonalmodel.adapter.test.mockdb import MockDb 
-from hexagonalmodel.adapter.test.mockstorage import MockStorage
 from handler import inputbody
 
 def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_delete_department_from_database(mocker: MockerFixture):
