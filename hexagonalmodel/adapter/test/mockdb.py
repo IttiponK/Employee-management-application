@@ -35,3 +35,6 @@ class MockDb(DbPort):
     
     def update_position(self, update_position: PositionModel) -> int:
         pass 
+    
+    def delete_position_by_id(self, id_: int) -> None:
+        pass 

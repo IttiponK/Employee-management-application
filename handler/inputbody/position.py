@@ -21,3 +21,12 @@ class UpdataPosition(BaseModel):
     id:int
     position_name:Optional[str]
     salary:Optional[float]
+    
+class DeletePosition(BaseModel):
+    
+    model_config = ConfigDict(
+        validate_assignment=True,
+        extra='forbid'
+    )
+    
+    id:int

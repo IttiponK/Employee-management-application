@@ -28,3 +28,9 @@ def update_position(input_body: inputbody.position.UpdataPosition) -> int:
     
     return id_
 
+def delete_position(input_body: inputbody.position.DeletePosition) -> None:
+    repo = Registry()
+    
+    repo.db.delete_position_by_id(id_=input_body.id)
+
+

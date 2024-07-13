@@ -111,4 +111,12 @@ class DbPort(ABC):
             int: id of this position
         """
         
+    @abstractmethod
+    def delete_position_by_id(self,id_: int) -> None:
+        """ delete position data in database
+
+        Args:
+            id_ (int): id of position
+        """        
+        
             
