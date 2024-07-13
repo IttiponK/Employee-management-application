@@ -187,3 +187,14 @@ class DbPort(ABC):
         Returns:
             List[StatusModel]: list of status model
         """        
+        
+    @abstractmethod
+    def update_status(self,update_status:StatusModel) -> int:
+        """ update status data to database 
+
+        Args:
+            update_status (StatusModel): status model
+
+        Returns:
+            int: id of this status
+        """        

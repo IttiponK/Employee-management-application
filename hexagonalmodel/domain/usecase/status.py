@@ -18,3 +18,12 @@ def get_all_status() -> List[StatusModel]:
     all_status = repo.db.get_all_status()
     
     return all_status
+
+def update_status(input_body: inputbody.status.UpdateStatus) -> int:
+    repo = Registry()
+    
+    update_status_model = StatusModel.model_validate(input_body.model_dump())
+    
+    id_ = repo.db.update_status(update_status_model)
+    
+    return id_
