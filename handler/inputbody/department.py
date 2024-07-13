@@ -10,3 +10,14 @@ class CreateNewDepartment(BaseModel):
     
     department_name:str 
     manager_id:Optional[int] = None
+    
+class UpdateDepartment(BaseModel):
+    
+    model_config = ConfigDict(
+        validate_assignment=True,
+        extra='forbid'
+    )
+    
+    id:int
+    department_name:str 
+    manager_id:Optional[int] = None

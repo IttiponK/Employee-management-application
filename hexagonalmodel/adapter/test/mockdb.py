@@ -49,3 +49,6 @@ class MockDb(DbPort):
     
     def get_all_department(self) -> List[DepartmentModel]:
         pass 
+    
+    def update_department(self, update_department_model: DepartmentModel) -> int:
+        pass 

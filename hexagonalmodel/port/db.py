@@ -149,3 +149,14 @@ class DbPort(ABC):
         Returns:
             List[DepartmentModel]: list of department data 
         """        
+        
+    @abstractmethod
+    def update_department(self,update_department_model:DepartmentModel) -> int:
+        """ update department data to database
+
+        Args:
+            update_department_model (DepartmentModel): update department model
+
+        Returns:
+            int: id of this department
+        """        

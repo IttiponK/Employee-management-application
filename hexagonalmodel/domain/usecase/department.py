@@ -21,3 +21,17 @@ def get_all_department() -> List[DepartmentModel]:
     all_department = repo.db.get_all_department()
     
     return all_department
+
+def update_department(input_body: inputbody.department.UpdateDepartment) -> int:
+    repo = Registry()
+    
+    update_department_model = DepartmentModel(
+        id=input_body.id,
+        department_name=input_body.department_name,
+        manager=input_body.manager_id
+    )
+    
+    id_ = repo.db.update_department(update_department_model)
+    
+    return id_
+
