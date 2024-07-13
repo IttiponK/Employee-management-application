@@ -65,3 +65,15 @@ def update_employee(input_body: inputbody.employee.UpdateEmployee) -> int:
     
     return id_
 
+def terminate_employee(input_body: inputbody.employee.TerminateEmployee) -> int :
+    repo = Registry()
+    
+    existing_employee_model = repo.db.get_employee_by_id(id_=input_body.id)
+    
+    terminate_status = repo.db.get_status_by_status_name(status='terminate')
+    
+    existing_employee_model.status = terminate_status
+    
+    id_ = repo.db.update_employee(existing_employee_model)
+    
+    return id_

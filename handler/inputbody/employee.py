@@ -30,4 +30,10 @@ class UpdateEmployee(BaseModel):
     status:Optional[str] 
     image:Optional[bytes]
     
+class TerminateEmployee(BaseModel):
+    model_config = ConfigDict(
+        validate_assignment=True,
+        extra='forbid'
+    )
     
+    id:int

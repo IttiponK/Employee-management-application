@@ -48,6 +48,8 @@ def test_should_raise_InvalidEmployeeId_when_employee_id_in_input_body_is_invali
     mock_call_func1.assert_called_once()
     mock_call_func2.assert_not_called()
     
+    mocker.resetall()
+    
 def test_should_raise_StorageAdapterHaveSomethingWrong_when_can_not_update_employee_image_to_storage(mocker: MockerFixture):
     Registry().db = MockDb()
     Registry().storage = MockStorage()
@@ -71,6 +73,8 @@ def test_should_raise_StorageAdapterHaveSomethingWrong_when_can_not_update_emplo
     
     mock_call_func1.assert_called_once()
     mock_call_func2.assert_called_once()
+    
+    mocker.resetall()
     
 def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_update_employee_data_to_database(mocker: MockerFixture):
     Registry().db = MockDb()
@@ -98,5 +102,7 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_update_employee_d
     mock_call_func1.assert_called_once()
     mock_call_func2.assert_not_called()
     mock_call_func3.assert_called_once()
+    
+    mocker.resetall()
         
     
