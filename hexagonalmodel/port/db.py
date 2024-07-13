@@ -141,3 +141,11 @@ class DbPort(ABC):
         Returns:
             int: id of department
         """        
+        
+    @abstractmethod
+    def get_all_department(self) -> List[DepartmentModel]:
+        """ get all department data from database
+
+        Returns:
+            List[DepartmentModel]: list of department data 
+        """        
