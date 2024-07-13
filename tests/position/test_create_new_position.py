@@ -24,7 +24,7 @@ def test_should_raise_DuplicatePosition_when_new_position_already_exist(mocker: 
     
     mocker.resetall()
     
-def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_create_new_position(mocker: MockerFixture):
+def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_create_new_position_to_database(mocker: MockerFixture):
     Registry().db = MockDb()
     
     mocker_request_data = {

@@ -91,3 +91,11 @@ class DbPort(ABC):
         Returns:
             int: id of this position
         """        
+        
+    @abstractmethod
+    def get_all_position(self) -> List[PositionModel]:
+        """ get all position from database
+
+        Returns:
+            List[PositionModel]: list of position model
+        """        
