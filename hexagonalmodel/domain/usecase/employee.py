@@ -43,29 +43,32 @@ def update_employee(input_body: inputbody.employee.UpdateEmployee) -> int:
     else:
         image_path = existing_employee_model.image
     
-    if input_body.position_id:
-        position = repo.db.get_position_by_position_id(id_=input_body.position_id)
+    if input_body.position_id != existing_employee_model.position_id:
+        repo.db.get_position_by_position_id(id_=input_body.position_id)
+        position_id = input_body.position_id
     else:
-        position = existing_employee_model.position
+        position_id = input_body.position_id
         
-    if input_body.status_id:
-        status = repo.db.get_status_by_status_id(input_body.status_id)
+    if input_body.status_id != existing_employee_model.status_id:
+        repo.db.get_status_by_status_id(input_body.status_id)
+        status_id = input_body.status_id
     else:
-        status = existing_employee_model.status
+        status_id = input_body.status_id
         
-    if input_body.department_id:
-        department = repo.db.get_department_by_id(id_=input_body.department_id)
+    if input_body.department_id != existing_employee_model.department_id:
+        repo.db.get_department_by_id(id_=input_body.department_id)
+        department_id = input_body.department_id
     else:
-        department = existing_employee_model.department
+        department_id = input_body.department_id
         
     update_employee_model = EmployeeModel(
         id=input_body.id,
         first_name=input_body.first_name,
         last_name=input_body.last_name,
         address=input_body.address,
-        position=position,
-        status=status,
-        department=department,
+        position_id=position_id,
+        status_id=status_id,
+        department_id=department_id,
         image=image_path
     )
     

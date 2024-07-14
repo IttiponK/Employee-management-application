@@ -10,6 +10,7 @@ class CreatePosition(BaseModel):
     
     position_name:str 
     salary:float
+    department_id:int
     
 class UpdataPosition(BaseModel):
     
@@ -19,8 +20,9 @@ class UpdataPosition(BaseModel):
     )
     
     id:int
-    position_name:Optional[str]
-    salary:Optional[float]
+    position_name:Optional[str] = None
+    salary:Optional[float] = None
+    department_id:Optional[int] = None
     
 class DeletePosition(BaseModel):
     

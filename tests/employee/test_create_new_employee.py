@@ -82,10 +82,10 @@ def test_should_raise_InvalidStatus_when_status_in_input_body_is_invalid(mocker:
         "image":b"someimage"
     }
     mock_call_func1 = mocker.patch.object(Registry().db,'get_position_by_position_id',return_value=mock_position_model)
-    mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_id',side_effect=exception.InvalidStatus)
+    mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_id',side_effect=exception.InvalidStatusId)
     
     mock_input_body = inputbody.employee.CreateNewEmployee.model_validate(mock_request_data)
-    with raises(exception.InvalidStatus):
+    with raises(exception.InvalidStatusId):
         
         id_ = usecase.employee.create_new_employee(mock_input_body)
     

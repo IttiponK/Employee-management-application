@@ -7,7 +7,7 @@ class DbAdapterHaveSomethingWrong(Exception):
 class EncryptionAdapterHaveSomethingWrong(Exception):
     pass 
 
-class InvalidStatus(Exception):
+class InvalidStatusId(Exception):
     pass 
 
 class StorageAdapterHaveSomethingWrong(Exception):
@@ -20,4 +20,16 @@ class DuplicatePosition(Exception):
     pass 
 
 class InvalidPositionId(Exception):
+    pass 
+
+class ThisPositionAlreadyUse(Exception):
+    pass 
+
+class InvalidDepartmentId(Exception):
+    pass 
+
+class ThisDepartmentAlreadyUse(Exception):
+    pass 
+
+class ThisStatusAlreadyUse(Exception):
     pass 

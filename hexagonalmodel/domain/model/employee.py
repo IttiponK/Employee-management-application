@@ -8,18 +8,19 @@ class EmployeeModel(BaseModel):
     
     model_config = ConfigDict(
         validate_assignment=True,
-        extra='forbid'
+        extra='forbid',
+        from_attributes=True
     )
     
     id:Optional[int] = None
-    first_name:str 
-    last_name:str 
-    address:str 
-    image:str
+    first_name:Optional[str] = None
+    last_name:Optional[str] = None
+    address:Optional[str] = None
+    image:Optional[str] = None
     
-    position_id:int 
-    status_id:int 
-    department_id:int
+    position_id:Optional[int] = None 
+    status_id:Optional[int] = None 
+    department_id:Optional[int] = None
     
     position:Optional[PositionModel] = None
     status:Optional[StatusModel] = None

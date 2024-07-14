@@ -8,7 +8,7 @@ def create_new_department(input_body:inputbody.department.CreateNewDepartment) -
     
     new_department = DepartmentModel(
         department_name=input_body.department_name,
-        manager=input_body.manager_id
+        manager_id=input_body.manager_id
     )
     
     id_ = repo.db.create_new_department(new_department)
@@ -28,7 +28,7 @@ def update_department(input_body: inputbody.department.UpdateDepartment) -> int:
     update_department_model = DepartmentModel(
         id=input_body.id,
         department_name=input_body.department_name,
-        manager=input_body.manager_id
+        manager_id=input_body.manager_id
     )
     
     id_ = repo.db.update_department(update_department_model)

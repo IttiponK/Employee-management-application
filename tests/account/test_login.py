@@ -8,29 +8,10 @@ from hexagonalmodel.domain import model
 from hexagonalmodel.adapter.test.mockdb import MockDb 
 from hexagonalmodel.adapter.test.mockencrypt import MockEncrypt
 
-mock_status = model.status.StatusModel(
-    status_name='test'
-)
-mock_position = model.position.PositionModel(
-    position_name='test',
-    salary=80000
-)
-mock_department = model.department.DepartmentModel(
-    department_name='information technology'
-)
-mock_employee = model.employee.EmployeeModel(
-    first_name='test',
-    last_name='test',
-    address='test',
-    position_id=1,
-    status_id=1,
-    department_id=1,
-    image='test'
-)
 mock_account = model.account.AccountModel(
     username='test',
     password='test',
-    owner=mock_employee,
+    employee_owner_id=1,
     deactivate=False
 )
 

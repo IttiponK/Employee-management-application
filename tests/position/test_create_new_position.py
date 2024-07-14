@@ -11,7 +11,8 @@ def test_should_raise_DuplicatePosition_when_new_position_already_exist(mocker: 
     
     mocker_request_data = {
         'position_name':'test',
-        'salary':80000.0
+        'salary':80000.0,
+        'department_id':1
     }
 
     mock_call_func1 = mocker.patch.object(Registry().db,'create_new_position',side_effect=exception.DuplicatePosition)
@@ -29,7 +30,8 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_create_new_positi
     
     mocker_request_data = {
         'position_name':'test',
-        'salary':80000.0
+        'salary':80000.0,
+        'department_id':1
     }
 
     mock_call_func1 = mocker.patch.object(Registry().db,'create_new_position',side_effect=exception.DbAdapterHaveSomethingWrong)
@@ -47,7 +49,8 @@ def test_should_not_raise_any_Exception_when_everything_is_valid(mocker: MockerF
     
     mocker_request_data = {
         'position_name':'test',
-        'salary':80000.0
+        'salary':80000.0,
+        'department_id':1
     }
 
     mock_call_func1 = mocker.patch.object(Registry().db,'create_new_position',return_value=1)

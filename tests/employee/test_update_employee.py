@@ -8,23 +8,14 @@ from hexagonalmodel.adapter.test.mockdb import MockDb
 from hexagonalmodel.adapter.test.mockstorage import MockStorage
 from handler import inputbody
 
-mock_status = model.status.StatusModel(
-    status_name='test'
-)
-mock_position = model.position.PositionModel(
-    position_name='test',
-    salary=80000
-)
-mock_department = model.department.DepartmentModel(
-    department_name='information technology'
-)
+
 mock_employee = model.employee.EmployeeModel(
     first_name='test',
     last_name='test',
     address='test',
-    position=mock_position,
-    status=mock_status,
-    department=mock_department,
+    position_id=1,
+    status_id=1,
+    department_id=1,
     image='test'
 )
 
