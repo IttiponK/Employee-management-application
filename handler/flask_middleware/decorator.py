@@ -50,6 +50,17 @@ def endpoint_handler(func):
                 }
             ),401
         
+        except (
+            exception.ThisDepartmentAlreadyUse
+        ):
+            logger.error('it already use',exc_info=True)
+            
+            return jsonify(
+                {
+                    'message':'this data already use'
+                }
+            ),409
+        
         except Exception as e:
             
             logger.error(str(e),exc_info=True)

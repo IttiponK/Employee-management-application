@@ -1,5 +1,5 @@
 from typing import List
-from hexagonalmodel.domain.base import exception
+from hexagonalmodel.domain.base import exception, settings
 from hexagonalmodel.domain.model.account import AccountModel
 from hexagonalmodel.domain.model.department import DepartmentModel
 from hexagonalmodel.domain.model.employee import EmployeeModel
@@ -25,7 +25,7 @@ class DepartmentsTable(Base):
     
     id = Column(Integer,primary_key=True)
     department_name = Column(String(30),nullable=False,unique=True)
-    manager_id = Column(Integer)
+    manager_id = Column(Integer,unique=True)
     
 class PositionsTable(Base):
     __tablename__ = 'positions'
@@ -311,11 +311,11 @@ class MariaDbAdapter(DbPort):
         row = session.query(DepartmentsTable).filter_by(id=id_).first()
         if row:
             
-            position_already_use_this_department = session.query(PositionModel).filter_by(department_id=id_).first()
+            position_already_use_this_department = session.query(PositionsTable).filter_by(department_id=id_).first()
             if position_already_use_this_department:
                 raise exception.ThisDepartmentAlreadyUse
             
-            employee_already_use_this_department = session.query(EmployeesTable).filter_by(department_id=id_).filter(EmployeesTable.status.status_name != 'terminate').first()
+            employee_already_use_this_department = session.query(EmployeesTable).filter_by(department_id=id_).filter(EmployeesTable.status_id != settings.TERMINATE_STATUS).first()
             if employee_already_use_this_department:
                 raise exception.ThisDepartmentAlreadyUse
             

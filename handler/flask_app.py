@@ -9,6 +9,6 @@ def create_flask_app():
 
     app.register_blueprint(flask_endpoint.account.account_blueprint,url_prefix='/account')
     app.register_blueprint(flask_endpoint.employee.employee_blueprint,url_prefix='/employee')
-
+    app.register_blueprint(flask_endpoint.department.department_blueprint,url_prefix='/department')
     
     return app
