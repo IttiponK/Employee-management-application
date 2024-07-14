@@ -231,7 +231,7 @@ class MariaDbAdapter(DbPort):
         session = get_db_sess()
         row = session.query(PositionsTable).filter_by(id=id_).first()
         if row:
-            employee_already_use_this_position = session.query(EmployeesTable).filter_by(position_id=id_).filter(EmployeesTable.status.status_name != 'terminate').first()
+            employee_already_use_this_position = session.query(EmployeesTable).filter_by(position_id=id_).filter(EmployeesTable.status_id == settings.TERMINATE_STATUS).first()
             if employee_already_use_this_position:
                 raise exception.ThisPositionAlreadyUse
             session.delete(row)

@@ -1,5 +1,5 @@
 from flask import Flask
-from handler import eventhandler, flask_endpoint
+from handler import eventhandler, flask_endpoint as endpoint
 
 
 def create_flask_app():
@@ -7,8 +7,9 @@ def create_flask_app():
     
     eventhandler.dependency_injection()
 
-    app.register_blueprint(flask_endpoint.account.account_blueprint,url_prefix='/account')
-    app.register_blueprint(flask_endpoint.employee.employee_blueprint,url_prefix='/employee')
-    app.register_blueprint(flask_endpoint.department.department_blueprint,url_prefix='/department')
+    app.register_blueprint(endpoint.account.account_blueprint,url_prefix='/account')
+    app.register_blueprint(endpoint.employee.employee_blueprint,url_prefix='/employee')
+    app.register_blueprint(endpoint.department.department_blueprint,url_prefix='/department')
+    app.register_blueprint(endpoint.position.position_blueprint,url_prefix='/position')
     
     return app

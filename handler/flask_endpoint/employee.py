@@ -9,7 +9,6 @@ employee_blueprint = Blueprint('employee',__name__)
 @employee_blueprint.route('/create-new-employee',methods=['POST'])
 @decorator.endpoint_handler
 def create_new_employee_enpoint():
-    print(request.form)
     input_body = inputbody.employee.CreateNewEmployee(
         first_name=request.form.get('first_name'),
         last_name=request.form.get('last_name'),
