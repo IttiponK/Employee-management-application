@@ -11,5 +11,6 @@ def create_flask_app():
     app.register_blueprint(endpoint.employee.employee_blueprint,url_prefix='/employee')
     app.register_blueprint(endpoint.department.department_blueprint,url_prefix='/department')
     app.register_blueprint(endpoint.position.position_blueprint,url_prefix='/position')
+    app.register_blueprint(endpoint.status.status_blueprint,url_prefix='/status')
     
     return app
