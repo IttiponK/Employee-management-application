@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 
 load_dotenv('infrastructure/config/.env')
 
+BUCKET_NAME = os.environ['BUCKET_NAME']
 
-AWS_ACCESS_KEY = os.environ["AWS_ACCESS_KEY"]
-AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
+BUCKET_URL = os.environ['BUCKET_URL']
+
+TERMINATE_STATUS = 1

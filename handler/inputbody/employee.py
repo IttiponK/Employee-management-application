@@ -1,5 +1,5 @@
 from pydantic import BaseModel,ConfigDict
-from typing import Optional
+from typing import Any, Optional,Callable
 
 class CreateNewEmployee(BaseModel):
     
@@ -10,11 +10,11 @@ class CreateNewEmployee(BaseModel):
     
     first_name:str 
     last_name:str 
-    address:str 
+    address:Optional[str] = None 
     position_id:int  
     status_id:int  
     department_id:int 
-    image:Optional[bytes] = None
+    image:Any = None
     
 class UpdateEmployee(BaseModel):
     

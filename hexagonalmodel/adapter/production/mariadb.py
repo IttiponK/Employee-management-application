@@ -7,9 +7,9 @@ from hexagonalmodel.domain.model.position import PositionModel
 from hexagonalmodel.domain.model.status import StatusModel
 from hexagonalmodel.port.db import DbPort
 from infrastructure.mariadb.connect import Base,get_db_sess
-from sqlalchemy import Boolean, Column, Float, ForeignKey, Integer, String, BINARY
+from sqlalchemy import Boolean, Column, Float, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
-from hexagonalmodel.domain.base.exception import InvalidStatusId, ThisStatusAlreadyUse
+
 
 class AccountsTable(Base):
     __tablename__ = 'accounts'
@@ -50,9 +50,9 @@ class EmployeesTable(Base):
     address = Column(String(250),nullable=False) 
     image = Column(String(250))
     
-    position_id = Column(Integer,ForeignKey(column='positions.id'),nullable=False) 
-    status_id = Column(Integer,ForeignKey(column='status.id'),nullable=False) 
-    department_id = Column(Integer,ForeignKey(column='deparmentments.id'),nullable=False)
+    position_id = Column(Integer,ForeignKey(column='positions.id')) 
+    status_id = Column(Integer,ForeignKey(column='status.id')) 
+    department_id = Column(Integer,ForeignKey(column='departments.id'))
     
     position = relationship("PositionsTable")
     status = relationship("StatusTable")
@@ -100,9 +100,18 @@ class MariaDbAdapter(DbPort):
         raise exception.InvalidStatusId
     
     def create_new_employee(self, new_employee: EmployeeModel) -> int:
-        
+
         session = get_db_sess()
-        new_row = EmployeesTable(**new_employee.model_dump())
+
+        new_row = EmployeesTable(
+            first_name = new_employee.first_name,
+            last_name = new_employee.last_name,
+            address = new_employee.address,
+            image = new_employee.image,
+            position_id = new_employee.position_id,
+            status_id = new_employee.status_id,
+            department_id = new_employee.department_id
+        )
         
         session.add(new_row)
         session.commit()
@@ -385,3 +394,7 @@ class MariaDbAdapter(DbPort):
         else:
             session.close()
             raise exception.InvalidStatusId
+        
+if __name__ == '__main__':
+    from infrastructure.mariadb.connect import engine
+    Base.metadata.create_all(engine)

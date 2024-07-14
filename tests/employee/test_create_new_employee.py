@@ -21,6 +21,9 @@ mock_department_model = model.department.DepartmentModel(
     department_name='information technology'
 )
 
+class MockFileObj:
+    pass
+
 def test_should_raise_InvalidPositoin_when_position_name_in_input_body_is_invalid(mocker:MockerFixture):
     Registry().db = MockDb()
     
@@ -31,7 +34,7 @@ def test_should_raise_InvalidPositoin_when_position_name_in_input_body_is_invali
         "position_id":1,
         "status_id":1,
         "department_id":1,
-        "image":b"someimage"
+        "image":MockFileObj()
     }
     
     mock_call_func = mocker.patch.object(Registry().db,'get_position_by_position_id',side_effect=exception.InvalidPositionId)
@@ -55,7 +58,7 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_cat_not_check_position_ex
         "position_id":1,
         "status_id":1,
         "department_id":1,
-        "image":b"someimage"
+        "image":MockFileObj()
     }
     
     mock_call_func = mocker.patch.object(Registry().db,'get_position_by_position_id',side_effect=exception.DbAdapterHaveSomethingWrong)
@@ -79,7 +82,7 @@ def test_should_raise_InvalidStatus_when_status_in_input_body_is_invalid(mocker:
         "position_id":1,
         "status_id":1,
         "department_id":1,
-        "image":b"someimage"
+        "image":MockFileObj()
     }
     mock_call_func1 = mocker.patch.object(Registry().db,'get_position_by_position_id',return_value=mock_position_model)
     mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_id',side_effect=exception.InvalidStatusId)
@@ -104,7 +107,7 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_check_status_exis
         "position_id":1,
         "status_id":1,
         "department_id":1,
-        "image":b"someimage"
+        "image":MockFileObj()
     }
     mock_call_func1 = mocker.patch.object(Registry().db,'get_position_by_position_id',return_value=mock_position_model)
     mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_id',side_effect=exception.DbAdapterHaveSomethingWrong)
@@ -130,7 +133,7 @@ def test_should_raise_StorageAdapterHaveSomethingWrong_when_cannot_upload_image_
         "position_id":1,
         "status_id":1,
         "department_id":1,
-        "image":b"someimage"
+        "image":MockFileObj()
     }
     
     mock_call_func1 = mocker.patch.object(Registry().db,'get_position_by_position_id',return_value=mock_position_model)
@@ -161,7 +164,7 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_create_new_employ
         "position_id":1,
         "status_id":1,
         "department_id":1,
-        "image":b"someimage"
+        "image":MockFileObj()
     }
     
     mock_call_func1 = mocker.patch.object(Registry().db,'get_position_by_position_id',return_value=mock_position_model)
@@ -177,7 +180,7 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_create_new_employ
     
     mock_call_func1.assert_called_once()
     mock_call_func2.assert_called_once()
-    mock_call_func3.assert_called_once()  
+    mock_call_func3.assert_not_called() 
     mock_call_func4.assert_called_once()
     mock_call_func5.assert_called_once()
     
@@ -194,7 +197,7 @@ def test_should_raise_any_Exception_when_everything_is_valid(mocker: MockerFixtu
         "position_id":1,
         "status_id":1,
         "department_id":1,
-        "image":b"someimage"
+        "image":MockFileObj()
     }
     
     mock_call_func1 = mocker.patch.object(Registry().db,'get_position_by_position_id',return_value=mock_position_model)

@@ -1,3 +1,4 @@
+from hexagonalmodel.domain.base import settings
 from hexagonalmodel.domain.base.registry import Registry
 from handler import inputbody
 from hexagonalmodel.domain.model.employee import EmployeeModel
@@ -9,7 +10,7 @@ def create_new_employee(input_body:inputbody.employee.CreateNewEmployee) -> int:
     repo.db.get_position_by_position_id(id_=input_body.position_id)
     repo.db.get_status_by_status_id(id_=input_body.status_id)
     repo.db.get_department_by_id(id_=input_body.department_id)
-    image_path = repo.storage.upload_employee_image_file(image=input_body.image)
+    
     
     new_employee = EmployeeModel(
         first_name=input_body.first_name,
@@ -18,10 +19,15 @@ def create_new_employee(input_body:inputbody.employee.CreateNewEmployee) -> int:
         position_id=input_body.position_id,
         status_id=input_body.status_id,
         department_id=input_body.department_id,
-        image=image_path
     )
     
     id_ = repo.db.create_new_employee(new_employee)
+    
+    image_path = repo.storage.upload_employee_image_file(image=input_body.image,employee_id=id_)
+    new_employee.image = image_path
+    new_employee.id = id_
+    
+    repo.db.update_employee(new_employee)
     
     return id_
     
@@ -39,7 +45,7 @@ def update_employee(input_body: inputbody.employee.UpdateEmployee) -> int:
     existing_employee_model = repo.db.get_employee_by_id(id_=input_body.id)
     
     if input_body.image:
-        image_path = repo.storage.upload_employee_image_file(image=input_body.image)
+        image_path = repo.storage.upload_employee_image_file(image=input_body.image,employee_id=existing_employee_model.id)
     else:
         image_path = existing_employee_model.image
     
@@ -81,9 +87,7 @@ def terminate_employee(input_body: inputbody.employee.TerminateEmployee) -> int 
     
     existing_employee_model = repo.db.get_employee_by_id(id_=input_body.id)
     
-    terminate_status = repo.db.get_status_by_status_id(status='terminate')
-    
-    existing_employee_model.status = terminate_status
+    existing_employee_model.status_id = settings.TERMINATE_STATUS
     
     id_ = repo.db.update_employee(existing_employee_model)
     

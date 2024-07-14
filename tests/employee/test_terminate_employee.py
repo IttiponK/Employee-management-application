@@ -8,9 +8,6 @@ from hexagonalmodel.adapter.test.mockdb import MockDb
 from hexagonalmodel.adapter.test.mockstorage import MockStorage
 from handler import inputbody
 
-mock_status = model.status.StatusModel(
-    status_name='test'
-)
 
 mock_employee = model.employee.EmployeeModel(
     first_name='test',
@@ -32,9 +29,7 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_update_employee_d
     
     mock_call_func1 = mocker.patch.object(Registry().db,'get_employee_by_id',return_value=mock_employee)
     
-    mock_status.status_name = 'terminate'
-    mock_call_func2 = mocker.patch.object(Registry().db,'get_status_by_status_id',return_value=mock_status)
-    mock_call_func3 = mocker.patch.object(Registry().db,'update_employee',side_effect=exception.DbAdapterHaveSomethingWrong)
+    mock_call_func2 = mocker.patch.object(Registry().db,'update_employee',side_effect=exception.DbAdapterHaveSomethingWrong)
     
     mock_input = inputbody.employee.TerminateEmployee.model_validate(mock_request_data) 
     with raises(exception.DbAdapterHaveSomethingWrong):
@@ -42,10 +37,8 @@ def test_should_raise_DbAdapterHaveSomethingWrong_when_can_not_update_employee_d
         
     mock_call_func1.assert_called_once()
     mock_call_func2.assert_called_once()
-    mock_call_func3.assert_called_once()
     
     # reset to default value
-    mock_status.status_name = 'test'
     mocker.resetall()
         
     
