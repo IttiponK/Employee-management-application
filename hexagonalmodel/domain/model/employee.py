@@ -15,10 +15,15 @@ class EmployeeModel(BaseModel):
     first_name:str 
     last_name:str 
     address:str 
-    position:PositionModel
-    status:StatusModel 
-    department:DepartmentModel
     image:str
+    
+    position_id:int 
+    status_id:int 
+    department_id:int
+    
+    position:Optional[PositionModel] = None
+    status:Optional[StatusModel] = None
+    department:Optional[DepartmentModel] = None
     
     
     

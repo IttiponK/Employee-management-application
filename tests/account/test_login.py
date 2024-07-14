@@ -22,9 +22,9 @@ mock_employee = model.employee.EmployeeModel(
     first_name='test',
     last_name='test',
     address='test',
-    position=mock_position,
-    status=mock_status,
-    department=mock_department,
+    position_id=1,
+    status_id=1,
+    department_id=1,
     image='test'
 )
 mock_account = model.account.AccountModel(

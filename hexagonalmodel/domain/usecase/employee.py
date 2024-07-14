@@ -6,18 +6,18 @@ from typing import List
 def create_new_employee(input_body:inputbody.employee.CreateNewEmployee) -> int:
     repo = Registry()
     
-    position_model = repo.db.get_position_by_position_id(id_=input_body.position_id)
-    status_model = repo.db.get_status_by_status_id(id_=input_body.status_id)
-    department_model = repo.db.get_department_by_id(id_=input_body.department_id)
+    repo.db.get_position_by_position_id(id_=input_body.position_id)
+    repo.db.get_status_by_status_id(id_=input_body.status_id)
+    repo.db.get_department_by_id(id_=input_body.department_id)
     image_path = repo.storage.upload_employee_image_file(image=input_body.image)
     
     new_employee = EmployeeModel(
         first_name=input_body.first_name,
         last_name=input_body.last_name,
         address=input_body.address,
-        position=position_model,
-        status=status_model,
-        department=department_model,
+        position_id=input_body.position_id,
+        status_id=input_body.status_id,
+        department_id=input_body.department_id,
         image=image_path
     )
     
