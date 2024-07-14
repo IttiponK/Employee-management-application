@@ -42,6 +42,14 @@ def endpoint_handler(func):
                 }
             ),500
         
+        except exception.InvalidAuthorize:
+            logger.error('InvalidAuthorize',exc_info=True)
+            return jsonify(
+                {
+                    'message':'not authorize'
+                }
+            ),401
+        
         except Exception as e:
             
             logger.error(str(e),exc_info=True)

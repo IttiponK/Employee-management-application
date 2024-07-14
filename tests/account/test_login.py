@@ -113,7 +113,7 @@ def test_should_not_raise_any_Exception_when_everything_is_valid(mocker: MockerF
     
     assert isinstance(result,dict)
     
-    assert result == mock_account.model_dump()
+    assert not result.get('password')
     
     mock_call_func1.assert_called_once()
     

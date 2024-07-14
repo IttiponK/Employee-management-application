@@ -8,9 +8,12 @@ def login(input_body:inputbody.account.LoginModel) -> dict:
     
     user_account = repo.db.get_account_detail_by_username(username=input_body.username)
 
-    repo.encryption.verify_plaintext(plaintext=input_body.password,encrypt=user_account)
+    repo.encryption.verify_plaintext(plaintext=input_body.password,encrypt=user_account.password)
 
     if user_account.deactivate:
         raise exception.InvalidAuthorize
     
-    return user_account.model_dump()
+    user_detail = user_account.model_dump().copy()
+    del user_detail['password']
+    
+    return user_detail
