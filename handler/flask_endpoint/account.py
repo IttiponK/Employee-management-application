@@ -13,11 +13,11 @@ def login_endpoint():
     input_body = inputbody.account.LoginModel.model_validate(request.get_json())
     profile = usecase.account.login(input_body)
     
-    account = authlogin.LoginUser.model_dump(profile)
+    account = authlogin.LoginUser.model_validate(profile.model_dump())
     login_user(account)
     
     return jsonify(
         {
-            'profile': profile
+            'profile': profile.model_dump()
         }
     )
