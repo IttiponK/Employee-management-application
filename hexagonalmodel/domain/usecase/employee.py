@@ -92,3 +92,14 @@ def terminate_employee(input_body: inputbody.employee.TerminateEmployee) -> int 
     id_ = repo.db.update_employee(existing_employee_model)
     
     return id_
+
+def get_empolyees_with_filter(input_body: inputbody.employee.GetEmployeeWithFilter) -> List[EmployeeModel]:
+    repo = Registry()
+    
+    list_of_employee = repo.db.get_employee_by_filter(
+        status_id = input_body.status_id,
+        position_id = input_body.position_id,
+        department_id = input_body.department_id
+    )
+    
+    return list_of_employee

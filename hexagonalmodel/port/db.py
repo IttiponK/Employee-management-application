@@ -206,3 +206,16 @@ class DbPort(ABC):
         Args:
             id_ (int): id of status data
         """        
+        
+    @abstractmethod
+    def get_employee_by_filter(self,status_id: int, position_id: int, department_id: int) -> List[EmployeeModel]:
+        """ get employee data from database that match with filter
+
+        Args:
+            status_id (int): status id
+            position_id (int): position id
+            department_id (int): department id 
+
+        Returns:
+            List[EmployeeModel]: list of employee
+        """        

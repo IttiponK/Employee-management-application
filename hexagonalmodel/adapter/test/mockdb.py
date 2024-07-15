@@ -67,3 +67,6 @@ class MockDb(DbPort):
     
     def delete_status_by_id(self, id_: int) -> None:
         pass 
+    
+    def get_employee_by_filter(self, status_id: int, position_id: int, department_id: int) -> List[EmployeeModel]:
+        pass 

@@ -29,7 +29,7 @@ class UpdateEmployee(BaseModel):
     address:Optional[str] = None 
     position_id:Optional[int] = None 
     status_id:Optional[int] = None 
-    department_id:Optional[int]
+    department_id:Optional[int] = None
     image:Optional[bytes] = None
     
 class TerminateEmployee(BaseModel):
@@ -39,3 +39,13 @@ class TerminateEmployee(BaseModel):
     )
     
     id:int
+    
+class GetEmployeeWithFilter(BaseModel):
+    model_config = ConfigDict(
+        validate_assignment=True,
+        extra='forbid'
+    )
+    
+    position_id:Optional[int] = None 
+    status_id:Optional[int] = None 
+    department_id:Optional[int] = None
