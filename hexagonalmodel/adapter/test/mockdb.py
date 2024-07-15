@@ -70,3 +70,6 @@ class MockDb(DbPort):
     
     def get_employee_by_filter(self, status_id: int | None = None, position_id: int | None = None, department_id: int | None = None) -> List[EmployeeModel]:
         pass 
+    
+    def get_account_by_id(self, id_: int) -> AccountModel:
+        pass 

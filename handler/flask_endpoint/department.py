@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify,request
-
+from flask_login import login_required
 from handler import inputbody
 from handler.flask_middleware import decorator
 from hexagonalmodel.domain import usecase
@@ -8,6 +8,7 @@ department_blueprint = Blueprint('department',__name__)
 
 @department_blueprint.route('/create-new-department',methods=['POST'])
 @decorator.endpoint_handler
+@login_required
 def create_new_department_endpoint():
     input_body = inputbody.department.CreateNewDepartment.model_validate(request.get_json())
     
@@ -21,6 +22,7 @@ def create_new_department_endpoint():
     
 @department_blueprint.route('/get-all-department',methods=['GET'])
 @decorator.endpoint_handler
+@login_required
 def get_all_department_endpoint():
     
     all_department = usecase.department.get_all_department()
@@ -35,6 +37,7 @@ def get_all_department_endpoint():
     
 @department_blueprint.route('/update-department',methods=['PUT'])
 @decorator.endpoint_handler
+@login_required
 def update_department_endpoint():
     input_body = inputbody.department.UpdateDepartment.model_validate(request.get_json())
     
@@ -48,6 +51,7 @@ def update_department_endpoint():
     
 @department_blueprint.route('/delete-department',methods=['DELETE'])
 @decorator.endpoint_handler
+@login_required
 def delete_department_endpoint():
     input_body = inputbody.department.DeleteDepartment.model_validate(request.get_json())
     

@@ -10,7 +10,7 @@ class AccountModel(BaseModel):
         from_attributes=True
     )
     id:Optional[int] = None
-    username:str 
-    password:str 
-    employee_owner_id:int
-    deactivate:bool
+    username:Optional[str] = None 
+    password:Optional[str] = None 
+    employee_owner_id:Optional[int] = None
+    deactivate:Optional[bool] = None

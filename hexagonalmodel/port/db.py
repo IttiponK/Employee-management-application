@@ -218,4 +218,15 @@ class DbPort(ABC):
 
         Returns:
             List[EmployeeModel]: list of employee model
-        """             
+        """  
+        
+    @abstractmethod
+    def get_account_by_id(self,id_: int) -> AccountModel:
+        """ get account data from database
+
+        Args:
+            id_ (int): id of this account
+
+        Returns:
+            AccountModel: account model
+        """                   

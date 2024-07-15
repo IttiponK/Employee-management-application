@@ -416,3 +416,17 @@ class MariaDbAdapter(DbPort):
         session.close()
         
         return all_employee
+    
+    def get_account_by_id(self, id_: int) -> AccountModel:
+
+        session = get_db_sess()
+        
+        row = session.query(AccountsTable).filter_by(id=id_).first()
+        
+        if row:
+            account = AccountModel.model_validate(row)
+            session.close()
+            
+            return account
+        
+        raise exception.InvalidAuthorize

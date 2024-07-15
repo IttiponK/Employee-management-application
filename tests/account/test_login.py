@@ -111,9 +111,9 @@ def test_should_not_raise_any_Exception_when_everything_is_valid(mocker: MockerF
     mock_input = inputbody.account.LoginModel.model_validate(mock_request_data)
     result = usecase.account.login(mock_input)
     
-    assert isinstance(result,dict)
+    assert isinstance(result,model.account.AccountModel)
     
-    assert not result.get('password')
+    assert not result.password
     
     mock_call_func1.assert_called_once()
     

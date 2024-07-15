@@ -1,5 +1,5 @@
 from flask import Blueprint,request,jsonify
-
+from flask_login import login_required
 from handler import inputbody
 from handler.flask_middleware import decorator
 from hexagonalmodel.domain import usecase
@@ -8,6 +8,7 @@ position_blueprint = Blueprint('position',__name__)
 
 @position_blueprint.route('/create-new-position',methods=['POST'])
 @decorator.endpoint_handler
+@login_required
 def create_new_position_endpoint():
     
     input_body = inputbody.position.CreatePosition.model_validate(request.get_json())
@@ -21,6 +22,7 @@ def create_new_position_endpoint():
     
 @position_blueprint.route('/get-all-position',methods=['GET'])
 @decorator.endpoint_handler
+@login_required
 def get_all_position_endpoint():
     
     all_position = usecase.position.get_all_position()
@@ -35,6 +37,7 @@ def get_all_position_endpoint():
     
 @position_blueprint.route('/update-position',methods=['PUT'])
 @decorator.endpoint_handler
+@login_required
 def update_position_endpoint():
     
     input_body = inputbody.position.UpdataPosition.model_validate(request.get_json())
@@ -49,6 +52,7 @@ def update_position_endpoint():
     
 @position_blueprint.route('/delete-position',methods=['DELETE'])
 @decorator.endpoint_handler
+@login_required
 def delete_position_endpoint():
     
     input_body = inputbody.position.DeletePosition.model_validate(request.get_json())

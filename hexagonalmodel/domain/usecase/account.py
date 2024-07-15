@@ -1,9 +1,9 @@
 from handler import inputbody
 from hexagonalmodel.domain.base.registry import Registry
-from hexagonalmodel.domain import model
+from hexagonalmodel.domain.model.account import AccountModel
 from hexagonalmodel.domain.base import exception
 
-def login(input_body:inputbody.account.LoginModel) -> dict:
+def login(input_body:inputbody.account.LoginModel) -> AccountModel:
     repo = Registry()
     
     user_account = repo.db.get_account_detail_by_username(username=input_body.username)
@@ -13,7 +13,13 @@ def login(input_body:inputbody.account.LoginModel) -> dict:
     if user_account.deactivate:
         raise exception.InvalidAuthorize
     
-    user_detail = user_account.model_dump().copy()
-    del user_detail['password']
+    user_account.password = None
     
-    return user_detail
+    return user_account
+
+def get_account_by_id(id_:int) -> AccountModel:
+    repo = Registry()
+    
+    account = repo.db.get_account_by_id(id_=id_)
+    
+    return account
