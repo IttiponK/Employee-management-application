@@ -6,7 +6,7 @@ from hexagonalmodel.domain.model.employee import EmployeeModel
 from hexagonalmodel.domain.model.position import PositionModel
 from hexagonalmodel.domain.model.status import StatusModel
 from hexagonalmodel.port.db import DbPort
-from infrastructure.mariadb.connect import Base,get_db_sess
+from infrastructure.mariadb.connect import Base,get_db_sess,engine
 from sqlalchemy import Boolean, Column, Float, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
@@ -430,3 +430,4 @@ class MariaDbAdapter(DbPort):
             return account
         
         raise exception.InvalidAuthorize
+    
