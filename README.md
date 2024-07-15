@@ -2,7 +2,7 @@
 Employee management application
 
 ## Project structure guideline
-
+```
 .
 ├── handler                             # handler store all handler process that handle code life cycle such as api endpoint or process
 │   ├── event_handler.py                # store event handler code such as dependency injection
@@ -46,3 +46,4 @@ Employee management application
 ├── test                                # this folder contain all unit test 
 │   └── test_usecase1_dosomething.py    # store test case of usecase1
 |   └── test_usecase2_dosomething2.py   # store test case of usecase2
+```
