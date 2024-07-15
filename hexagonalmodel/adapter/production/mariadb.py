@@ -395,6 +395,24 @@ class MariaDbAdapter(DbPort):
             session.close()
             raise exception.InvalidStatusId
         
-if __name__ == '__main__':
-    from infrastructure.mariadb.connect import engine
-    Base.metadata.create_all(engine)
+    def get_employee_by_filter(self, status_id: int, position_id: int, department_id: int) -> List[EmployeeModel]:
+
+        session = get_db_sess()
+        query = session.query(EmployeesTable)
+        
+        if status_id:
+            query.filter(EmployeesTable.status_id == status_id)
+            
+        if position_id:
+            query.filter(EmployeesTable.position_id == position_id)
+            
+        if department_id:
+            query.filter(EmployeesTable.department_id == department_id)
+            
+        all_row = query.all()
+        
+        all_employee = [EmployeeModel.model_validate(employee) for employee in all_row]
+        
+        session.close()
+        
+        return all_employee

@@ -4,7 +4,7 @@ from hexagonalmodel.domain.model.status import StatusModel
 from hexagonalmodel.domain.model.position import PositionModel
 from hexagonalmodel.domain.model.employee import EmployeeModel
 from hexagonalmodel.domain.model.department import DepartmentModel
-from typing import List
+from typing import List,Optional
 
 class DbPort(ABC):
     
@@ -208,14 +208,14 @@ class DbPort(ABC):
         """        
         
     @abstractmethod
-    def get_employee_by_filter(self,status_id: int, position_id: int, department_id: int) -> List[EmployeeModel]:
+    def get_employee_by_filter(self,status_id: Optional[int] = None, position_id: Optional[int] = None, department_id: Optional[int] = None) -> List[EmployeeModel]:
         """ get employee data from database that match with filter
 
         Args:
-            status_id (int): status id
-            position_id (int): position id
-            department_id (int): department id 
+            status_id (Optional[int], optional): status id. Defaults to None.
+            position_id (Optional[int], optional): position id. Defaults to None.
+            department_id (Optional[int], optional): department id. Defaults to None.
 
         Returns:
-            List[EmployeeModel]: list of employee
-        """        
+            List[EmployeeModel]: list of employee model
+        """             

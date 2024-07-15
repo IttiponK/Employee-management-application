@@ -69,3 +69,20 @@ def terminate_employee_endpoint():
         }
     )
         
+@employee_blueprint.route('/get-employee-with-filter',methods=['POST'])
+@decorator.endpoint_handler
+def get_employee_with_filter_endpoint():
+    
+    input_body = inputbody.employee.GetEmployeeWithFilter.model_validate(request.get_json())
+    
+    all_employee = usecase.employee.get_empolyees_with_filter(input_body)
+    
+    all_serialize_employee = [employee.model_dump() for employee in all_employee]
+    
+    return jsonify(
+        {
+            'all_employee':all_serialize_employee
+        }
+    )
+    
+    
