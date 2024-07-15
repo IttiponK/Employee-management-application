@@ -47,3 +47,7 @@ Employee management application
 │   └── test_usecase1_dosomething.py    # store test case of usecase1
 |   └── test_usecase2_dosomething2.py   # store test case of usecase2
 ```
+
+## Code pattern description 
+
+This project follow with TDD,SOLID and Hexagonal Architecture all of them enhance this project for more readable, maintainable and flexible 
