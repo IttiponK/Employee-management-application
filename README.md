@@ -51,3 +51,9 @@ Employee management application
 ## Code pattern description 
 
 This project follow with TDD,SOLID and Hexagonal Architecture all of them enhance this project for more readable, maintainable and flexible 
+
+## Run unit test 
+
+```
+pytest tests
+```

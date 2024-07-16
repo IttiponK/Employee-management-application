@@ -8,6 +8,6 @@ def dependency_injection():
     from hexagonalmodel.adapter.production.bcryptencrypt import BcryptEncryptionAdapter
     Registry().encryption = BcryptEncryptionAdapter()
     
-    from hexagonalmodel.adapter.production.s3strorage import S3StorageAdapter
+    from hexagonalmodel.adapter.production.s3storage import S3StorageAdapter
     Registry().storage = S3StorageAdapter()
     

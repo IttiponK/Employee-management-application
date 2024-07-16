@@ -11,16 +11,7 @@ employee_blueprint = Blueprint('employee',__name__)
 @decorator.endpoint_handler
 @login_required
 def create_new_employee_enpoint():
-    input_body = inputbody.employee.CreateNewEmployee(
-        first_name=request.form.get('first_name'),
-        last_name=request.form.get('last_name'),
-        address=request.form.get('address'),
-        position_id=request.form.get('position_id'),
-        status_id=request.form.get('status_id'),
-        department_id=request.form.get('department_id'),
-        image=request.files.get('image')
-    )
-    
+    input_body = inputbody.employee.CreateNewEmployee.model_validate(request.get_json())
     id_ = usecase.employee.create_new_employee(input_body)
     
     return jsonify(
@@ -59,7 +50,7 @@ def update_employee_endpoint():
         }
     ),200
 
-@employee_blueprint.route('/terminate_employee',methods=['DELETE'])
+@employee_blueprint.route('/terminate-employee',methods=['DELETE'])
 @decorator.endpoint_handler
 @login_required
 def terminate_employee_endpoint():
@@ -90,5 +81,3 @@ def get_employee_with_filter_endpoint():
             'all_employee':all_serialize_employee
         }
     )
-    
-    
