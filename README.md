@@ -1,6 +1,31 @@
 # Employee-management-application
 Employee management application
 
+## Requirement
+- Login endpoint with authentication
+- Employee endpoint with crud operation
+	- create new employee endpoint 
+	- read employee data endpoint (get all)
+	- update employee endpoint 
+	- delete ( terminate ) employee endpoint
+- Position endpoint with crud operation 
+	- create new position endpoint 
+	- read position data endpoint (get all)
+	- update position data endpoint 
+	- delete position endpoint (with condition it should not already use)
+- Department endpoint with crud operation 
+	- create new department endpoint 
+	- read department data endpoint (get all)
+	- update department data endpoint
+	- delete department endpoint (with condition it should not already use) 
+- Status endpoint with crud operation
+	- create new status endpoint 
+	- read status data endpoint (get all) 
+	- update status data endpoint 
+	- delete status endpoint (with condition it should not already use)
+- Advance query endpoint 
+	- query with dynamic filter such as position, department and status
+
 ## Project structure guideline
 ```
 .
@@ -47,6 +72,13 @@ Employee management application
 │   └── test_usecase1_dosomething.py    # store test case of usecase1
 |   └── test_usecase2_dosomething2.py   # store test case of usecase2
 ```
+## Code design diagram
+
+![alt text](image.png)
+
+## Adapter implementation guideline
+
+![alt text](image-1.png)
 
 ## Code pattern description 
 
