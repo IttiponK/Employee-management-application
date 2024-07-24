@@ -89,3 +89,65 @@ This project follow with TDD,SOLID and Hexagonal Architecture all of them enhanc
 ```
 pytest tests
 ```
+
+## Coverage report 
+
+```
+Name                                             Stmts   Miss  Cover
+--------------------------------------------------------------------
+handler/__init__.py                                  0      0   100%
+handler/inputbody/__init__.py                        5      0   100%
+handler/inputbody/account.py                         5      0   100%
+handler/inputbody/department.py                     14      0   100%
+handler/inputbody/employee.py                       29      0   100%
+handler/inputbody/position.py                       16      0   100%
+handler/inputbody/status.py                         11      0   100%
+hexagonalmodel/adapter/test/mockdb.py               52     17    67%
+hexagonalmodel/adapter/test/mockencrypt.py           4      0   100%
+hexagonalmodel/adapter/test/mockstorage.py           5      1    80%
+hexagonalmodel/domain/base/exception.py             24      0   100%
+hexagonalmodel/domain/base/registry.py              10      0   100%
+hexagonalmodel/domain/base/settings.py              11      0   100%
+hexagonalmodel/domain/base/singleton.py              7      0   100%
+hexagonalmodel/domain/model/__init__.py              5      0   100%
+hexagonalmodel/domain/model/account.py              10      0   100%
+hexagonalmodel/domain/model/department.py            7      0   100%
+hexagonalmodel/domain/model/employee.py             18      0   100%
+hexagonalmodel/domain/model/position.py              8      0   100%
+hexagonalmodel/domain/model/status.py                6      0   100%
+hexagonalmodel/domain/usecase/__init__.py            5      0   100%
+hexagonalmodel/domain/usecase/account.py            16      3    81%
+hexagonalmodel/domain/usecase/department.py         21      0   100%
+hexagonalmodel/domain/usecase/employee.py           52      6    88%
+hexagonalmodel/domain/usecase/position.py           21      0   100%
+hexagonalmodel/domain/usecase/status.py             21      0   100%
+hexagonalmodel/port/db.py                           52      0   100%
+hexagonalmodel/port/encryption.py                    4      0   100%
+hexagonalmodel/port/storage.py                       5      0   100%
+tests/__init__.py                                    0      0   100%
+tests/account/__init__.py                            0      0   100%
+tests/account/test_login.py                         63      0   100%
+tests/department/__init__.py                         0      0   100%
+tests/department/test_create_new_department.py      26      0   100%
+tests/department/test_delete_department.py          24      0   100%
+tests/department/test_get_all_department.py         21      0   100%
+tests/department/test_update_department.py          25      0   100%
+tests/employee/__init__.py                           0      0   100%
+tests/employee/test_create_new_employee.py         106      0   100%
+tests/employee/test_get_all_employee.py             22      0   100%
+tests/employee/test_get_employee_with_flter.py      16      0   100%
+tests/employee/test_terminate_employee.py           21      0   100%
+tests/employee/test_update_employee.py              48      0   100%
+tests/position/__init__.py                           0      0   100%
+tests/position/test_create_new_position.py          34      0   100%
+tests/position/test_delete_position.py              33      0   100%
+tests/position/test_get_all_position.py             22      0   100%
+tests/position/test_update_position.py              25      0   100%
+tests/status/__init__.py                             0      0   100%
+tests/status/test_create_new_status.py              24      0   100%
+tests/status/test_delete_status.py                  24      0   100%
+tests/status/test_get_all_status.py                 22      0   100%
+tests/status/test_update_status.py                  26      0   100%
+--------------------------------------------------------------------
+TOTAL                                             1026     27    97%
+```
